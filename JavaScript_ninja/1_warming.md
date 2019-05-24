@@ -1,7 +1,7 @@
 # JavaScript
-- JavaScript is quite functionally oriented
+- JavaScript is quite **functionally oriented**
 - Important concepts
-    - Functions are first-class objects
+    - Functions are **first-class objects**
         - Functions coexist with, and can be treated like, any other JavaScript object
         - They can be created through literals, referenced by variables, passed around as function arguments, and even returned as function return values
     - Function closures
@@ -34,7 +34,7 @@
     assert(a === 1, "Disaster! a is not 1!")
     ```
 
-- Performance analysis
+- **Performance analysis**
 
     ```js
     // built-in
@@ -68,18 +68,18 @@
 - The page-building phase starts with the browser receiving the HTML code
 - The browser does the parsing one HTML element at a time until the first `script` element is reached
 - Although the HTML and the DOM are closely linked, with the DOM being constructed from HTML, they aren’t one and the same
-- You should think of the HTML code as a **blueprint** the browser follows when constructing the initial DOM - the UI - of the page
-    - The browser can even fix problems that it finds with this blueprint in order to create a valid DOM
-    - > HTML: https://html.spec.whatwg.org/, https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
-    - > DOM: https://dom.spec.whatwg.org/, https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+  - You should think of the HTML code as a **blueprint** the browser follows when constructing the initial DOM - the UI - of the page
+      - The browser can even fix problems that it finds with this blueprint in order to create a valid DOM
+      - > HTML: https://html.spec.whatwg.org/, https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
+      - > DOM: https://dom.spec.whatwg.org/, https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
 - When the browser encounters the `script` element during page construction, the browser pauses the DOM construction from HTML code and starts executing JavaScript code
 ## Executing JavaScript code
 - The browser provides an API through a global object that can be used by the JavaScript engine to interact with and modify the page
-- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction
+    - https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction
 ### Global objects
 - The primary global object that the browser exposes to the JavaScript engine is the `window` object, which represents the window in which a page is contained
 - **The `window` object** is the global object through which all other global objects, global variables (even user-defined ones), and browser APIs are accessible
-- One of the most important properties of the global window object is the `document`, which represents the DOM of the current page
+- One of the most important properties of the global window object is the `document`, which represents the **DOM of the current page**
 ### Different types of JavaScript code
 - We broadly differentiate between 2 different types of JavaScript code: *global code* and *function code*
     - The code contained in a function is called function code
@@ -95,14 +95,14 @@
 - If, during that processing, the browser again encounters a `script` element, the DOM creation from HTML code is again paused, and the JavaScript runtime starts executing the contained JavaScript code
 - **The global state of the JavaScript application persists in the meantime**
     - All user-defined global variables created during the execution of JavaScript code in one script element are normally accessible to JavaScript code in other script elements
-- This happens because the global `window` object, which stores all global JavaScript variables, is alive and accessible during the entire lifecycle of the page
+- This happens because the global **`window`** object, which stores all global JavaScript variables, is **alive and accessible during the entire lifecycle of the page**
 # Event handling
 - Client-side web applications are GUI applications, which means they react to different kinds of events: mouse moves, clicks, keyboard presses, and so on
 - For this reason, the JavaScript code executed during the page-building phase, in addition to **influencing the global application state** and **modifying the DOM**, can also **register** event listeners (or handlers): functions that are **executed by the browser** when an event occurs
 - The browser execution environment is, at its core, based on the idea that **only a single piece of code can be executed at once**: the so-called *single-threaded* execution model
 - 事件不会等前一个事件结束才发生
 - The browser uses an *event queue* to keep track of the events that have occurred but have yet to be processed
-- All generated events (it doesn’t matter if they’re user-generated, like mouse moves or key presses, or server-generated, such as Ajax events) are placed in the same event queue, in the order in which they’re detected by the browser
+- All generated events (it doesn’t matter if they’re user-generated, like mouse moves or key presses, or server-generated, such as Ajax events) are placed in the same event queue, **in the order in which they’re detected by the browser**
 - Event-handling process
     - The browser checks the head of the event queue
     - If there are no events, the event loop keeps checking
