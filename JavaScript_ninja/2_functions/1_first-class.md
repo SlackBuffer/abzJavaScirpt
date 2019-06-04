@@ -1,9 +1,17 @@
 # First-class objects
 - Understand JS as a functional language
-- Functions are first-class **objects** (first-class citizens)
+- Functions are first-class **objects** (first-class citizens) created by the built-in `Function` constructor
 - Functions are objects, just with an additional, special capability of being ***invokable***: Functions can be called or invoked in order to perform an act
 - Function capabilities
     - Referenced by variables
+    	
+        ```js
+        function whatsMyContext() { return this }
+        // This doesn’t create a second instance of the function;
+        // it merely creates a reference to the same function (first-class object)
+        var getMyThis = whatsMyContext
+        ```
+    
     - Created via literals
     - Assigned to variables, array entries, properties of objects
     - Passed as arguments to functions
@@ -89,6 +97,7 @@
 - Such functions that are always a part of another statement (for example, as the right side of an assignment expression, or as an argument to another function) are called function expressions
 	
     ```js
+    (function() { console.log(123) })()
     // Named function expression as part of a function call that will be immediately invoked
     (function namedFunctionExpression() {})()
 
@@ -102,7 +111,7 @@
 - For function declarations, the function name is **mandatory**, whereas for function expressions it’s completely **optional**
 #### Immediate functions
 - When we want to make a function call, we use an expression that evaluates to a function, followed by a pair of function call parentheses
-    - The expression to the left of the calling parenthesis doesn’t have to be a simple identifier; it can be any expression that evaluates to a function.
+    - The expression to the left of the calling parenthesis doesn’t have to be a simple identifier; it can be ***any expression that evaluates to a function***
     - A simple way to specify an expression that evaluates to a function is to use a function expression
     - > Immediately invoked function expression (IIFE)
 - IIFE can be used to mimic modules in JS
@@ -115,13 +124,14 @@
 - Unary operators signal to the JavaScript engine that it’s dealing with expressions and not statements
     - The results of applying these unary operators aren’t stored anywhere; from a computational perspective, they don’t really matter; only the calls to our IIFEs matter
 ### Arrow functions
-- `=>`: *fat-arrow* operator
+- `=>` - *fat-arrow* operator
 ## Arguments and function parameters
 - A *parameter* is a variable that we list as part of a function **definition**
 - An *argument* is a value that we pass to the function when we **invoke** it
 ### Rest **parameters**
+- 是数组
 - Only the last function parameter can be a rest parameter
-- 可以用于箭头函数；可以只有 rest parameters 没有别的参数
+- 可以用于箭头函数；**可以只有 rest parameters** 没有别的参数
 	
     ```js
                 // 括号不能省略 
