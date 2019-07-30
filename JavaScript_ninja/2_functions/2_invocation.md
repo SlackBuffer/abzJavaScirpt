@@ -48,6 +48,7 @@
 - There’s nothing special about a function that’s going to be used as a constructor. Constructor functions are declared just like any other functions 
 - To invoke the function as a constructor, we precede the function invocation with the keyword `new`
 - A function constructor enables us to create functions from dynamically created strings
+    - `new Function('a', 'b', 'return a+b')`
 - Constructor functions are functions that we use to **create and initialize object instances**
     - We can easily use function declarations and function expressions for constructing new objects
     - The only exception is the arrow function
@@ -207,6 +208,7 @@ o5.func.apply(o4)   // {k: 'foo', func: f} remembers
     </script>
     ```
 
+    - `apply`, `call` cannot change `this` of arrow functions; `bind` "can" because it creates a new function with a specified `this`
 - Arrow functions pick up the value of the `this` parameter at the moment of their creation
 #### Caveat: arrow functions and object literals
 - If an arrow function is defined within an object literal that’s defined in global code, the value of the this parameter associated with the arrow function is the global `window` object
@@ -244,7 +246,7 @@ foo()   // Window
 ```
 
 ### Using `bind`
-- Every function has access to the `bind` method that, in short, **creates a new function**
+- Every function (including arrow function) has access to the `bind` method that, in short, **creates a new function**
     - This function has the **same body**, but its **context** is always **bound** to a certain object, **regardless of the way it's invoked**. In all other aspects, the bound function behaves as the original function
     - Calling the `bind` method doesn’t modify the original function
 	
@@ -264,3 +266,11 @@ foo()   // Window
         elem.addEventListener("click", button.click.bind(button)) // a new function
     </script>
     ```
+
+## Other `this`
+### `setTimeout`
+- The default `this` value of a `setTimeout` callback will still be the `window` object, and not `undefined`, even in strict mode
+- There's also no option to pass a `thisArg` to `setTimeout` as there is in Array methods like `forEach`, `reduce`, etc. Using `call` to set `this` doesn't work either
+    - A common way to solve the problem is to use a wrapper function that sets this to the required value
+    - Another possible way to solve the "`this`" problem is to replace the host `setTimeout()` and `setInterval()` global functions with ones that allow passing a this object and set it in the callback using `Function.prototype.call`
+- > https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#The_this_problem
